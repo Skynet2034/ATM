@@ -5,6 +5,13 @@ public class Treasure {
     private Nominal nominal;
     private int amount;
 
+    public Treasure(Nominal nominal, int amount) {
+        this.nominal = nominal;
+        this.amount = amount;
+    }
+
+    public Treasure(){}
+
     public Nominal getNominal() {
         return nominal;
     }

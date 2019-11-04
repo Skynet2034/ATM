@@ -1,33 +1,42 @@
 import app.domain.Account;
-import collection.AccountCollection;
-import store.Storage;
+import app.domain.Treasure;
+import collection.AtmCollection;
+import collection.impl.ListAtmCollection;
+import repository.StorageRepository;
+import repository.factory.StorageFactory;
 
-import java.util.Date;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class AtmMain {
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Deque;
 
-    public static void main(String[] args) throws ClassNotFoundException {
-        AccountCollection accounts = new AccountCollection(2);
-        Account acc1=new Account("vova", new Date(),"12345");
-        accounts.add(acc1);
-        Account acc2=new Account("vasya", new Date(),"23456");
-        accounts.add(acc2);
-        Account acc3=new Account("petya", new Date(),"34567");
-        accounts.add(acc3);
-      // System.out.println(accounts.size());
-       //System.out.println(accounts);
-       accounts.addFirst(acc3);
-       accounts.addLast(acc1);
-        System.out.println(accounts);
-      accounts.removeLastOccurence(acc1);
-        System.out.println(accounts);
-        accounts.removeFirstOccurence(acc3);
-        System.out.println(accounts);
-        accounts.removeFirst();
-        System.out.println(accounts);
+/**
+ * https://vk.com/doc10903696_336361025?hash=175de31599461c95a4&dl=4850ee878a3611ed69
+ * https://vk.com/wall-54530371_505
+ */
+
+public class AtmMain{
+
+    public static void main(String[] args){
+
+        Instant start = Instant.now();
+
+        ListAtmCollection atmCollection = new ListAtmCollection();
+        atmCollection.append(1);
+        atmCollection.append(2);
+        atmCollection.append(3);
+        atmCollection.append(4);
 
 
-  //      while(true){}
+        boolean item = atmCollection.remove(3);
+
+        Instant stop = Instant.now();
+        System.out.println(Duration.between(start, stop));
+
+
 
     }
 }
