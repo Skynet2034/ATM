@@ -4,12 +4,7 @@ public class ArrayCollectionQueue <E> extends ArrayCollection {
 
     public boolean add(E item)
     {
-        if(count == list.length)
-            expand();
-        System.arraycopy(list,0, list,1, count);
-        list[0]=item;
-        count++;
-        return true;
+        return addFirst(item);
     }
 
     public E poll()

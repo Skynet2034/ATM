@@ -4,24 +4,9 @@ public class ListCollectionList<E> extends ListCollection {
 
    public boolean add(E item)
    {
-       return addTail(item);
+       return addLast(item);
    }
-   public E removeFirst(E item)
-   {
-       ListCollection<E>.Node<E>  current = head;
-       ListCollection<E>.Node<E> parent = head;
-       while (current != null){
-           if(current.value.equals(item)){
-               parent.next = current.next;
-               if (tail==current) tail=current.next;
-               return item;
-           }
-           parent = current;
-
-           current = current.next;
-       }
-       return null;
-   }
+//remove по элементу реализован в суперклассе для коректной работы метода итератора remove
     public E remove(int index)
     {
         ListCollection<E>.Node<E>  current = head;
@@ -30,7 +15,7 @@ public class ListCollectionList<E> extends ListCollection {
         while (current != null){
             if(i==index){
                 parent.next = current.next;
-                if (tail==current) tail=current.next;
+                if (tail==current) tail=parent;
                 return (E) current.value;
             }
             parent = current;
@@ -39,14 +24,15 @@ public class ListCollectionList<E> extends ListCollection {
         }
         return null;
     }
+
     public Object[] toArray()
     {
         ArrayCollectionList<E> list=new ArrayCollectionList<>();
         ListCollection<E>.Node<E>  current = head;
-        while (current != null){
+           while (current != null){
             list.add(current.value);
             current=current.next;
-        }
+           }
         return list.toArray();
     }
 }

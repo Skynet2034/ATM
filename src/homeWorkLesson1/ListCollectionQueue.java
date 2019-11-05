@@ -1,14 +1,14 @@
 package homeWorkLesson1;
 
 public class ListCollectionQueue<E> extends ListCollection {
-// метод push и pop реализованы в суперклассе
+
    public boolean add(E item)
    {
-       return addTail(item);
+       return addLast(item);
    }
    public E poll()
    {
-       return (E) pop();
+       return (E) removeFirst();
    }
 public E peek()
 {

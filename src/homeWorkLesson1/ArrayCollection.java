@@ -4,8 +4,8 @@ import collection.AtmCollection;
 
 public class ArrayCollection<E> {
 
-    E[] list;
-    int count;
+    protected E[] list;
+    protected int count;
 
     public ArrayCollection(){
         this(10);
@@ -15,38 +15,11 @@ public class ArrayCollection<E> {
         list = (E[]) new Object[capacity];
     }
 
-
-    public boolean addLast(E item) {
-        if(count == list.length){
-            expand();
-        }
-        list[count] = item;
-        count++;
-        return true;
-    }
-
-    public E get(int idx){
-        checkIndex(idx);
-        return list[idx];
-    }
-
-    protected void checkIndex(int index) {
-        if(index > this.count || index < 0){
-            throw new RuntimeException("index out of range");
-        }
-    }
-
-    protected void expand(){
-        E tmp[] = (E[])new Object[count*2+1];
-        System.arraycopy(list,0,tmp,0,count);
-        list = tmp;
-    }
-
+    //методы contains(Object element), isEmpty(), clear() - общие для стека, очереди и списка, реализуем их в суперклассе
     public int size() {
         return count;
     }
 
-    //методы contains(Object element), isEmpty(), clear() - общие для стека, очереди и списка, реализуем их в суперклассе
     public boolean isEmpty()
     {
         return (count==0)?true:false;
@@ -68,10 +41,20 @@ public class ArrayCollection<E> {
         }
         return false;
     }
-
+    public E remove(int index) {
+        checkIndex(index);
+        E res = (E) list[index];
+        System.arraycopy(list, index+1, list, index, list.length - index-1);
+        count--;
+        return res;
+    }
+    public Iterator getIterator()
+    {
+        return new ArrayIterator(this);
+    }
     public String toString() //для вывода даных в классе TestCollections
     {
-       ;
+        ;
         StringBuilder res=new StringBuilder("[");
         if (isEmpty()) return "null";
         int i=0;
@@ -80,4 +63,42 @@ public class ArrayCollection<E> {
             i++;}
         return res.substring(0, res.length()-2)+"]";
     }
+
+    protected boolean addLast(E item) {
+        if(count == list.length){
+            expand();
+        }
+        list[count] = item;
+        count++;
+        return true;
+    }
+
+    protected boolean addFirst(E item)
+    {
+        if(count == list.length)
+            expand();
+        System.arraycopy(list,0, list,1, count);
+        list[0]=item;
+        count++;
+        return true;
+    }
+
+   public E get(int idx){
+        checkIndex(idx);
+        return list[idx];
+    }
+
+    protected void checkIndex(int index) {
+        if(index > this.count || index < 0){
+            throw new RuntimeException("index out of range");
+        }
+    }
+
+    protected void expand(){
+        E tmp[] = (E[])new Object[count*2+1];
+        System.arraycopy(list,0,tmp,0,count);
+        list = tmp;
+    }
+
+
 }

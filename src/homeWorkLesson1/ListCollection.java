@@ -14,7 +14,7 @@ public class ListCollection<E> {
     Node<E> head;
     Node<E> tail;
 
- public ListCollection(){
+    public ListCollection(){
 head=null;
 tail=null;
     }
@@ -26,7 +26,56 @@ public void clear()
     head=null;
     tail=null;
 }
-    public boolean push(E item){
+
+    public Node<E> getHead() {
+        return head;
+    }
+
+    public boolean contains(Object element)
+    {
+        if (isEmpty()) return false;
+        if (element!=null && (element.getClass()==head.value.getClass())) {
+            Node<E>  current = head;
+            while (current != null){
+                if (current.value.equals(element))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public String toString() //для вывода данных в классе CollectionsTest
+    {
+        StringBuilder res=new StringBuilder("[");
+        if (isEmpty()) return "null";
+        Node<E> current=head;
+        while (current!=null) {
+            res.append(current.value + " , ");
+            current=current.next;
+        }
+        return res.substring(0, res.length()-2)+"]";
+    }
+    public E remove(E item)
+    {
+        Node<E>  current = head;
+        Node<E> parent = head;
+        while (current != null){
+            if(current.value.equals(item)){
+                parent.next = current.next;
+                if (tail==current) tail=parent;
+                return item;
+            }
+            parent = current;
+            current = current.next;
+        }
+        return null;
+    }
+    public Iterator<E> getIterator() {
+        return new ListIterator<E>(this);
+    }
+
+
+    protected boolean addFirst(E item){
         if (head == null){
             head = new Node<>();
             head.value = item;
@@ -38,16 +87,16 @@ public void clear()
             head = new Node<>();
             head.value = item;
             head.next = tmp;
-
         }
         return true;
     }
 
-    public void append(E item){
+    protected void append(E item){
         if (head == null){
             head = new Node<>();
             head.value = item;
             tail=head;
+
         }else{
             Node<E> current = head;
             while (current.next != null){
@@ -56,22 +105,23 @@ public void clear()
             current.next = new Node<>();
             current.next.value = item;
             tail=current;
+
         }
     }
-    public boolean addTail(E item)
+
+    protected boolean addLast(E item)
     {
         if (head==null)
-            return push(item);
-
-        Node<E> tmp=tail;
-        tail=new Node<>();
-        tail.value=item;
-        tmp.next=tail;
+            return addFirst(item);
+        Node<E> tmp=new Node<>();
+        tmp.value=item;
+        tail.next=tmp;
+        tail=tmp;
         return true;
     }
 
 
-    public E pop(){
+    protected E removeFirst(){
         if(head == null)
             throw new NoSuchElementException();
         Node<E> tmp = head;
@@ -79,18 +129,6 @@ public void clear()
         return tmp.value;
     }
 
-    public boolean contains(Object element)
-    {
-        if (isEmpty()) return false;
-        if (element!=null && (element.getClass()==head.value.getClass())) {
-            Node<E>  current = head;
-            while (current != null){
-                   if (current.value.equals(element))
-                    return true;
-            }
-        }
-        return false;
-    }
 
     class Node<E>{
         E value;
@@ -100,18 +138,6 @@ public void clear()
             return this.value.toString();
         }
 
-    }
-
-    public String toString() //для вывода даных в классе TestCollections
-    {
-         StringBuilder res=new StringBuilder("[");
-        if (isEmpty()) return "null";
-        Node<E> current=head;
-        while (current!=null) {
-            res.append(current.value + " , ");
-            current=current.next;
-        }
-        return res.substring(0, res.length()-2)+"]";
     }
 }
 

@@ -7,7 +7,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 
-public class TestCollections {
+public class CollectionsTest {
 
     public static void main(String[] args) {
        /* //ArrayColectionQueue and general ArrayCollection tests
@@ -67,7 +67,7 @@ public class TestCollections {
         System.out.println(linkList.isEmpty());*/
 
         //ListCollectionStack tests
-       ListCollectionStack<Integer> linkStack = new ListCollectionStack<>();
+      /* ListCollectionStack<Integer> linkStack = new ListCollectionStack<>();
         for (int i=1;i<=10;i++)
             linkStack.push(i);
         System.out.println("ListCollectionStack tests");
@@ -75,10 +75,10 @@ public class TestCollections {
         System.out.println(linkStack.pop());
         System.out.println(linkStack);
         System.out.println(linkStack.peek());
-
+*/
         //ListCollectionQueue tests
-        ListCollectionQueue<Integer> linkQueue = new ListCollectionQueue<>();
-        for (int i=1;i<=10;i++)
+      /*  ListCollectionQueue<Integer> linkQueue = new ListCollectionQueue<>();
+        for (int i=1;i<=2;i++)
             linkQueue.add(i);
         System.out.println("ListCollectionQueue tests");
         System.out.println(linkQueue);
@@ -86,17 +86,37 @@ public class TestCollections {
         System.out.println(linkQueue);
         System.out.println(linkQueue.peek());
 
-        //ListCollectionList tests
-        ListCollectionList<Integer> linkedList = new ListCollectionList<>();
+        //ListCollectionList tests*/
+  /*      ListCollectionList<Integer> linkedList = new ListCollectionList<>();
         for (int i=1;i<=10;i++)
             linkedList.add(i);
         System.out.println("ListCollectionList tests");
         System.out.println(linkedList);
-        System.out.println(linkedList.removeFirst(Integer.valueOf(10)));
+        System.out.println(linkedList.remove(Integer.valueOf(10)));
         System.out.println(linkedList);
-        System.out.println(linkedList.removeFirst(7));
+        System.out.println(linkedList.remove(7));
         System.out.println(linkedList);
-        linkedList.add(12);
-        System.out.println("toArray="+ Arrays.toString(linkedList.toArray()));
+        linkedList.add(0);
+        System.out.println("toArray="+ Arrays.toString(linkedList.toArray()));*/
+ /*       System.out.println("Array Iterator");
+        ArrayCollectionList<Integer> list = new ArrayCollectionList<>();
+        for (int i=1;i<=10;i++)
+            list.add(i);
+        Iterator it=list.getIterator();
+                while(it.hasNext())
+                {
+                    System.out.println(it.next());
+                it.remove();}
+        System.out.println(list);*/
+        System.out.println("List Iterator");
+        ListCollectionList<Integer> linkedList = new ListCollectionList<>();
+        for (int i=1;i<=10;i++)
+            linkedList.add(i);
+        Iterator it2=linkedList.getIterator();
+        while(it2.hasNext())
+        {
+            System.out.println("next="+it2.next());
+            System.out.println("remove="+it2.remove());}
+        System.out.println(linkedList);
     }
 }

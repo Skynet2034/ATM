@@ -21,13 +21,7 @@ public E remove(E element) {
     }
     return null;
 }
-    public E remove(int index) {
-        checkIndex(index);
-        E res = (E) list[index];
-        System.arraycopy(list, index+1, list, index, list.length - index-1);
-        count--;
-        return res;
-    }
+//remove по индексу реализован в суперклассе, для корректной работы метода remove итератора
     public Object[] toArray()
     {
         Object[] res=new Object[count];
