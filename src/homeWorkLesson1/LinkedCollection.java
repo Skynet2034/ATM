@@ -39,6 +39,7 @@ public class LinkedCollection<E> {
             while (current != null) {
                 if (current.value.equals(element))
                     return true;
+                current=current.next;
             }
         }
         return false;

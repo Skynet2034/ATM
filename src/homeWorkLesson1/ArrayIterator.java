@@ -6,7 +6,7 @@ public class ArrayIterator<E> implements Iterator {
 
     ArrayIterator(ArrayCollection<E> collection) {
         this.collection = collection;
-        index = -1;
+        index=0;
     }
 
     public boolean hasNext() {
@@ -14,14 +14,16 @@ public class ArrayIterator<E> implements Iterator {
     }
 
     public E next() {
-        index++;
         if (index >= collection.size()) throw new RuntimeException("No next element");
-        return collection.get(index);
+        E res=(E) collection.get(index);
+        index++;
+        return res;
     }
 
     public E remove() {
         E res = collection.remove(index);
         index--;
+        if (index<0) index=0;
         return res;
     }
 }
