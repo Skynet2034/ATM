@@ -45,7 +45,7 @@ public class LinkedCollection<E> {
         return false;
     }
 
-    public String toString() //для вывода данных в классе CollectionsTest
+    public String toString() //для отладочных целей
     {
         StringBuilder res = new StringBuilder("[");
         if (isEmpty()) return "null";

@@ -55,7 +55,7 @@ public class ArrayCollection<E> {
         return list[idx];
     }
 
-    public String toString() //для вывода даных в классе TestCollections
+    public String toString() //для отладочных целей
     {
         StringBuilder res = new StringBuilder("[");
         if (isEmpty()) return "null";

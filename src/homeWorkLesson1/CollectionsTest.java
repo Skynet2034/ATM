@@ -5,7 +5,6 @@ public class CollectionsTest {
         ListArrayCollection<Integer> arr = new ListArrayCollection<>();
         ListLinkedCollection<Integer> linked = new ListLinkedCollection<>();
         for (int i = 0; i < length; i++) {
-
             arr.add(i);
             linked.add(i);
         }
