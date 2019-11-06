@@ -87,7 +87,7 @@ public class CollectionsTest {
         System.out.println(linkQueue.peek());
 
         //ListCollectionList tests*/
-  /*      ListCollectionList<Integer> linkedList = new ListCollectionList<>();
+  /*     ListCollectionList<Integer> linkedList = new ListCollectionList<>();
         for (int i=1;i<=10;i++)
             linkedList.add(i);
         System.out.println("ListCollectionList tests");
@@ -108,15 +108,17 @@ public class CollectionsTest {
                     System.out.println(it.next());
                 it.remove();}
         System.out.println(list);*/
-        System.out.println("List Iterator");
+   /*     System.out.println("List Iterator");
         ListCollectionList<Integer> linkedList = new ListCollectionList<>();
         for (int i=1;i<=10;i++)
             linkedList.add(i);
         Iterator it2=linkedList.getIterator();
+        System.out.println(linkedList);
         while(it2.hasNext())
         {
-            System.out.println("next="+it2.next());
-            System.out.println("remove="+it2.remove());}
-        System.out.println(linkedList);
+            //System.out.println("next="+it2.next());}
+           System.out.println("remove="+it2.remove());
+            System.out.println(linkedList);}
+        System.out.println(linkedList);*/
     }
 }

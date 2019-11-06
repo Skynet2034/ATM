@@ -10,10 +10,11 @@ public class ListIterator<E> implements Iterator {
     }
    public boolean hasNext()
     {
-        return current.next!=null;
+        return (current!=null);
     }
     public E next()
     {
+        if (current==null) throw new RuntimeException("No next element");
         E res=current.value;
         current=current.next;
         return res;
@@ -21,7 +22,7 @@ public class ListIterator<E> implements Iterator {
 
     public E remove()
     {
-        ListCollection<E>.Node<E> tmp=current.next;
+        if (current==null) throw new RuntimeException("No next element");
         E res=current.value;
         current=current.next;
         return collection.remove(res);

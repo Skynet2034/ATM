@@ -52,9 +52,13 @@ public class ArrayCollection<E> {
     {
         return new ArrayIterator(this);
     }
-    public String toString() //для вывода даных в классе TestCollections
+
+    public E get(int idx){
+        checkIndex(idx);
+        return list[idx];
+    }
+        public String toString() //для вывода даных в классе TestCollections
     {
-        ;
         StringBuilder res=new StringBuilder("[");
         if (isEmpty()) return "null";
         int i=0;
@@ -64,7 +68,7 @@ public class ArrayCollection<E> {
         return res.substring(0, res.length()-2)+"]";
     }
 
-    protected boolean addLast(E item) {
+     boolean addLast(E item) {
         if(count == list.length){
             expand();
         }
@@ -73,7 +77,7 @@ public class ArrayCollection<E> {
         return true;
     }
 
-    protected boolean addFirst(E item)
+   boolean addFirst(E item)
     {
         if(count == list.length)
             expand();
@@ -83,18 +87,15 @@ public class ArrayCollection<E> {
         return true;
     }
 
-   public E get(int idx){
-        checkIndex(idx);
-        return list[idx];
-    }
 
-    protected void checkIndex(int index) {
+
+   void checkIndex(int index) {
         if(index > this.count || index < 0){
             throw new RuntimeException("index out of range");
         }
     }
 
-    protected void expand(){
+    void expand(){
         E tmp[] = (E[])new Object[count*2+1];
         System.arraycopy(list,0,tmp,0,count);
         list = tmp;

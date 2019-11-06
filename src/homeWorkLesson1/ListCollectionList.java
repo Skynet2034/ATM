@@ -6,7 +6,10 @@ public class ListCollectionList<E> extends ListCollection {
    {
        return addLast(item);
    }
-//remove по элементу реализован в суперклассе для коректной работы метода итератора remove
+    public E remove(Object item)
+    {
+        return (E) super.remove(item);
+    }
     public E remove(int index)
     {
         ListCollection<E>.Node<E>  current = head;

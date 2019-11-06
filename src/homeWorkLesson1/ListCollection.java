@@ -61,9 +61,12 @@ public void clear()
         Node<E> parent = head;
         while (current != null){
             if(current.value.equals(item)){
-                parent.next = current.next;
-                if (tail==current) tail=parent;
-                return item;
+                if (current==head) return removeFirst();
+                else {
+                    parent.next = current.next;
+                    if (tail == current) tail = parent;
+                    return item;
+                }
             }
             parent = current;
             current = current.next;
@@ -75,7 +78,7 @@ public void clear()
     }
 
 
-    protected boolean addFirst(E item){
+   boolean addFirst(E item){
         if (head == null){
             head = new Node<>();
             head.value = item;
@@ -91,7 +94,7 @@ public void clear()
         return true;
     }
 
-    protected void append(E item){
+   void append(E item){
         if (head == null){
             head = new Node<>();
             head.value = item;
@@ -109,7 +112,7 @@ public void clear()
         }
     }
 
-    protected boolean addLast(E item)
+    boolean addLast(E item)
     {
         if (head==null)
             return addFirst(item);
@@ -121,7 +124,7 @@ public void clear()
     }
 
 
-    protected E removeFirst(){
+   E removeFirst(){
         if(head == null)
             throw new NoSuchElementException();
         Node<E> tmp = head;

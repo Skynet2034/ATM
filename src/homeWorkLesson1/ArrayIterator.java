@@ -15,6 +15,7 @@ return (index<collection.size()-1)?true:false;
     public E next()
     {
         index++;
+        if (index>=collection.size()) throw new RuntimeException("No next element");
         return collection.get(index);
     }
 
