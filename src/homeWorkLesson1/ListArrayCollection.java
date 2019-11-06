@@ -1,6 +1,6 @@
 package homeWorkLesson1;
 
-public class ArrayCollectionList<E> extends ArrayCollection {
+public class ListArrayCollection<E> extends ArrayCollection {
 
     public boolean add(E item) {
         return addLast(item);
