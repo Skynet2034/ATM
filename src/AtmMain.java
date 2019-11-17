@@ -8,10 +8,9 @@ import repository.factory.StorageFactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Deque;
 
 /**
  * https://vk.com/doc10903696_336361025?hash=175de31599461c95a4&dl=4850ee878a3611ed69
@@ -19,24 +18,29 @@ import java.util.Deque;
  */
 
 public class AtmMain{
-
-    public static void main(String[] args){
-
-        Instant start = Instant.now();
-
-        ListAtmCollection atmCollection = new ListAtmCollection();
-        atmCollection.append(1);
-        atmCollection.append(2);
-        atmCollection.append(3);
-        atmCollection.append(4);
-
-
-        boolean item = atmCollection.remove(3);
-
-        Instant stop = Instant.now();
-        System.out.println(Duration.between(start, stop));
-
-
-
+    private static final Logger LOGGER=Logger.getLogger(AtmMain.class.getName());
+    public static void main(String[] args) {
+       /* Connection connection=null;
+        try{
+            connection=DriverManager.getConnection("URL");
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, ex.getMessage());
+        }
+        finally {
+            try {
+                if (connection!=null)
+                connection.close();
+            } catch (SQLException ex) {
+                LOGGER.log(Level.SEVERE, ex.getMessage());
+            }
+        }
+*/
+        try (Connection connection = DriverManager.getConnection("URL")) {
+            connection.setAutoCommit(false);
+        }
+            catch (SQLException ex)
+            {
+                LOGGER.log(Level.SEVERE, ex.getMessage());
+            }
     }
 }
